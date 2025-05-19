@@ -92,26 +92,30 @@
     "deploy": [
       "Composer\\Config::disableProcessTimeout",
       "composer install",
-      "composer run-script build-theme",
+      "composer run-script prod-build-theme",
       "cd ./web/app/themes/flexor &&  composer install --no-dev --optimize-autoloader",
       "cd ./web/app/themes/flexor && wp acorn optimize"
     ],
-    "build-theme":[
+    "build-theme": [
       "Composer\\Config::disableProcessTimeout",
       "(cd ./web/app/themes/flexor && yarn build) || (cd ./web/app/themes/flexor && NODE_ENV=development && yarn install && yarn build)"
     ],
-    "dev-theme":[
+    "prod-build-theme": [
+      "Composer\\Config::disableProcessTimeout",
+      "(cd ./web/app/themes/flexor && yarn build) || (cd ./web/app/themes/flexor && NODE_ENV=production && yarn install && yarn build)"
+    ],
+    "dev-theme": [
       "Composer\\Config::disableProcessTimeout",
       "(cd ./web/app/themes/flexor && yarn dev) || (cd ./web/app/themes/flexor && NODE_ENV=development && yarn install && yarn dev)"
     ],
-    "debug-theme":[
+    "debug-theme": [
       "Composer\\Config::disableProcessTimeout",
       "(cd ./web/app/themes/flexor && yarn debug) || (cd ./web/app/themes/flexor && NODE_ENV=development && yarn install && yarn debug)"
     ],
-    "vendor:publish":[
+    "vendor:publish": [
       "cd ./web/app/themes/flexor && wp acorn vendor:publish"
     ],
-    "svgtojson":[
+    "svgtojson": [
       "Composer\\Config::disableProcessTimeout",
       "cd ./web/app/themes/flexor && yarn run svgtojson"
     ],
