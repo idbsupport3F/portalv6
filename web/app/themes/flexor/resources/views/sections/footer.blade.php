@@ -41,7 +41,19 @@
                         <div class="col">
                             <h4 class="footer-etc">Tarikh Kemaskini</h4>
                             <div>
-                                <p>{!! get_the_modified_date('') !!}</p>
+                                @php
+                                    $global_latest_update = get_posts([
+                                        'post_type'      => ['post', 'page'],
+                                        'posts_per_page' => 1,
+                                        'orderby'        => 'modified'
+                                    ]);
+                                                       @endphp
+
+                                <p>
+                                    @if(!empty($global_latest_update))
+                                        {{ mysql2date(get_option('date_format'), $global_latest_update[0]->post_modified) }}
+                                    @endif
+                                </p>
                             </div>
                         </div>
                     </div>
