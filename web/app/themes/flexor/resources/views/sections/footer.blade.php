@@ -51,7 +51,31 @@
 
                                 <p>
                                     @if(!empty($global_latest_update))
-                                        {{ mysql2date(get_option('date_format'), $global_latest_update[0]->post_modified) }}
+                                        @php
+                                            // 1. Get the standard formatted date string
+                                            $english_date = mysql2date(get_option('date_format'), $global_latest_update[0]->post_modified);
+                                            
+                                            // 2. Define the translation map
+                                            $malay_months = [
+                                                'January'   => 'Januari',
+                                                'February'  => 'Februari',
+                                                'March'     => 'Mac',
+                                                'April'     => 'April',
+                                                'May'       => 'Mei',
+                                                'June'      => 'Jun',
+                                                'July'      => 'Khamis', // or Julai
+                                                'August'    => 'Ogos',
+                                                'September' => 'September',
+                                                'October'   => 'Oktober',
+                                                'November'  => 'November',
+                                                'December'  => 'Disember'
+                                            ];
+                                            
+                                            // 3. Replace the text occurrences
+                                            $translated_date = strtr($english_date, $malay_months);
+                                        @endphp
+
+                                        {{ $translated_date }}
                                     @endif
                                 </p>
                             </div>
