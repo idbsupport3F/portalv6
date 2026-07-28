@@ -66,7 +66,7 @@
                                                 'April'     => 'April',
                                                 'May'       => 'Mei',
                                                 'June'      => 'Jun',
-                                                'July'      => 'Khamis', // or Julai
+                                                'July'      => 'Julai',
                                                 'August'    => 'Ogos',
                                                 'September' => 'September',
                                                 'October'   => 'Oktober',
